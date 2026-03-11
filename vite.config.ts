@@ -1,12 +1,25 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import { execSync } from 'node:child_process';
 import { defineConfig } from 'vite';
+
+function getGitCommit(): string {
+  if (process.env.VERCEL_GIT_COMMIT_SHA) return process.env.VERCEL_GIT_COMMIT_SHA.slice(0, 7);
+  try {
+    return execSync('git rev-parse --short HEAD', { encoding: 'utf-8' }).trim();
+  } catch {
+    return 'unknown';
+  }
+}
 
 export default defineConfig(() => {
   return {
     // Vercel / root: default '/'. GitHub Pages: set VITE_BASE_PATH=/REPO_NAME/ in env
     base: process.env.VITE_BASE_PATH ?? '/',
+    define: {
+      __GIT_COMMIT__: JSON.stringify(getGitCommit()),
+    },
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
