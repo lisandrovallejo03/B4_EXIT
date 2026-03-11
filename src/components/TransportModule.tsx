@@ -7,6 +7,7 @@ import type {
   CabaAlertsResponse,
   CabaAlertEntity,
 } from '../types/transport';
+import { apiProxyPath } from '../config/api';
 
 interface TransportStatus {
   id: string;
@@ -129,7 +130,7 @@ export function TransportModule() {
         setLoading(true);
         const results: TransportStatus[] = [];
 
-        const cabaApiUrl = import.meta.env.VITE_CABA_API_URL || "/api-caba";
+        const cabaApiUrl = import.meta.env.VITE_CABA_API_URL || apiProxyPath('caba', '');
         const clientId = import.meta.env.VITE_CABA_CLIENT_ID;
         const clientSecret = import.meta.env.VITE_CABA_CLIENT_SECRET;
 

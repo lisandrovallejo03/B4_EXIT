@@ -13,6 +13,7 @@ import { DolarModule } from './components/DolarModule';
 import { NewsAlertsModule } from './components/NewsAlertsModule';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Minesweeper } from './components/Minesweeper';
+import { apiProxyPath } from './config/api';
 
 const CPU_CLICKS_TO_ACTIVATE = 3;
 const CPU_CLICK_RESET_MS = 1500;
@@ -30,9 +31,9 @@ function toProxyCoinIconUrl(url: string | undefined): string | undefined {
   if (!url || !url.startsWith('http')) return undefined;
   try {
     const u = new URL(url);
-    const path = u.pathname + u.search;
-    if (u.hostname === 'coin-images.coingecko.com') return `/api-coingecko-icons${path}`;
-    if (u.hostname === 'assets.coingecko.com') return `/api-coingecko-assets${path}`;
+    const path = (u.pathname + u.search).replace(/^\//, '');
+    if (u.hostname === 'coin-images.coingecko.com') return apiProxyPath('coingecko-icons', path);
+    if (u.hostname === 'assets.coingecko.com') return apiProxyPath('coingecko-assets', path);
   } catch {
     return undefined;
   }
@@ -80,7 +81,7 @@ export default function App() {
 
   const fetchTicker = useCallback(async () => {
     try {
-      const url = `/api-coingecko/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&price_change_percentage=24h`;
+      const url = `${apiProxyPath('coingecko', 'api/v3/coins/markets')}?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&price_change_percentage=24h`;
       const res = await fetch(url, {
         headers: { Accept: 'application/json' },
       });

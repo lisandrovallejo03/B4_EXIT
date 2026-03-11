@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { DollarSign } from 'lucide-react';
 import { useFetch } from '../hooks/useFetch';
+import { apiProxyPath } from '../config/api';
 
 interface DolarApiItem {
   moneda: string;
@@ -65,7 +66,7 @@ export function DolarModule() {
 
   const { data: quotes, loading, error } = useFetch<DolarQuote[]>(
     async () => {
-      const res = await fetch('/api-dolar/v1/dolares', {
+      const res = await fetch(apiProxyPath('dolar', 'v1/dolares'), {
         headers: { Accept: 'application/json' },
       });
       if (!res.ok) throw new Error(`DolarAPI HTTP ${res.status}`);
