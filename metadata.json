@@ -1,0 +1,7 @@
+{
+  "name": "Nexus Exit Node",
+  "description": "Dashboard de estado de transporte, clima y tránsito de Buenos Aires con estilo Matrix.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
