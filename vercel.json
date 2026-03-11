@@ -1,0 +1,29 @@
+{
+  "rewrites": [
+    { "source": "/api-dolar/:path*", "destination": "https://dolarapi.com/:path*" },
+    { "source": "/api-coingecko-icons/:path*", "destination": "https://coin-images.coingecko.com/:path*" },
+    { "source": "/api-coingecko-assets/:path*", "destination": "https://assets.coingecko.com/:path*" },
+    { "source": "/api-coingecko/:path*", "destination": "https://api.coingecko.com/:path*" },
+    { "source": "/api-caba/:path*", "destination": "https://apitransporte.buenosaires.gob.ar/:path*" },
+    { "source": "/api-news-img-clarin/:path*", "destination": "https://www.clarin.com/:path*" },
+    { "source": "/api-news-img-ole/:path*", "destination": "https://www.ole.com.ar/:path*" },
+    { "source": "/api-news-img-cronica/:path*", "destination": "https://www.diariocronica.com.ar/:path*" },
+    { "source": "/api-news-img-lanacion/:path*", "destination": "https://www.lanacion.com.ar/:path*" },
+    { "source": "/api-news-img-glanacion/:path*", "destination": "https://resizer.glanacion.com/:path*" },
+    { "source": "/api-news-img-perfil/:path*", "destination": "https://www.perfil.com/:path*" },
+    { "source": "/api-news-img-pagina12-cdn/:path*", "destination": "https://cdn.pagina12.com.ar/:path*" },
+    { "source": "/api-news-img-pagina12/:path*", "destination": "https://www.pagina12.com.ar/:path*" },
+    { "source": "/api-rss-ole/:path*", "destination": "https://www.ole.com.ar/:path*" },
+    { "source": "/api-rss-clarin/:path*", "destination": "https://www.clarin.com/:path*" },
+    { "source": "/api-rss-lanacion/:path*", "destination": "https://www.lanacion.com.ar/:path*" },
+    { "source": "/api-rss-perfil/:path*", "destination": "https://www.perfil.com/:path*" },
+    { "source": "/api-rss-pagina12/:path*", "destination": "https://www.pagina12.com.ar/:path*" },
+    { "source": "/api-rss/:path*", "destination": "https://www.diariocronica.com.ar/rss/:path*" },
+    { "source": "/api-favicon-cronica/:path*", "destination": "https://www.diariocronica.com.ar/:path*" },
+    { "source": "/api-favicon-ole/:path*", "destination": "https://www.ole.com.ar/:path*" },
+    { "source": "/api-favicon-clarin/:path*", "destination": "https://www.clarin.com/:path*" },
+    { "source": "/api-favicon-lanacion/:path*", "destination": "https://www.lanacion.com.ar/:path*" },
+    { "source": "/api-favicon-perfil/:path*", "destination": "https://www.perfil.com/:path*" },
+    { "source": "/api-favicon-pagina12/:path*", "destination": "https://www.pagina12.com.ar/:path*" }
+  ]
+}

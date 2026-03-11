@@ -6,3 +6,10 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Cursor: rules, skills, agents (local/IDE-specific)
+.cursor/
+
+# Local test scripts (may contain API keys — use .env instead)
+test-api.js
+fetch_test.cjs

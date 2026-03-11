@@ -5,6 +5,8 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
   return {
+    // Vercel / root: default '/'. GitHub Pages: set VITE_BASE_PATH=/REPO_NAME/ in env
+    base: process.env.VITE_BASE_PATH ?? '/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

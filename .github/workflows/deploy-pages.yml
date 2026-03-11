@@ -1,0 +1,57 @@
+# Build and deploy to GitHub Pages (project site: https://USER.github.io/B4_EXIT/)
+# Enable in repo: Settings → Pages → Source: "GitHub Actions"
+#
+# APIs: Only Weather (Open-Meteo) works on GitHub Pages. Dolar, Crypto, News, Transport
+# use Vite's dev proxy (/api-*); there is no proxy in static hosting, so those calls 404.
+# For full API support, deploy to Vercel/Netlify and add proxy rewrites, or use a backend.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        # Base path for project site is set in vite.config.ts (/B4_EXIT/)
+        # If your repo name differs, set: env: { VITE_BASE_PATH: '/your-repo-name/' }
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deploy
+        uses: actions/deploy-pages@4
